@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insha & Amal Islamic Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<!-- Google AdSense - Replace with your publisher ID -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<style>
+:root {
+  --gold: #ffd700;
+  --gold2: #ffb300;
+  --green-dark: #0a2e0a;
+  --green-mid: #1b5e20;
+  --green-light: #2e7d32;
+  --green-accent: #4caf50;
+  --white: #ffffff;
+  --red: #ef5350;
+  --shadow: rgba(0,0,0,0.5);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: radial-gradient(ellipse at top, #0d2a0d 0%, #020a02 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 10px 40px;
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 580px;
+}
+.header-bismillah { color: var(--gold); font-size: 20px; margin-bottom: 4px; opacity: 0.9; }
+.stars { color: var(--gold); font-size: 14px; letter-spacing: 4px; margin-bottom: 4px; opacity: 0.7; }
+.header-title { font-size: 32px; font-weight: 700; color: var(--white); text-shadow: 0 0 30px rgba(255,215,0,0.6); line-height: 1.4; }
+.header-sub { color: var(--gold); font-size: 11px; letter-spacing: 3px; font-family: Arial, sans-serif; margin-top: 3px; opacity: 0.8; text-transform: uppercase; }
+.header-line { width: 200px; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 8px auto; }
+.owner-name { color: rgba(255,215,0,0.6); font-size: 12px; font-family: Arial, sans-serif; letter-spacing: 1px; }
+
+/* AD SPACE TOP */
+.ad-space {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,215,0,0.2);
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  margin-bottom: 12px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ad-space-label { color: rgba(255,215,0,0.3); font-size: 10px; font-family: Arial, sans-serif; letter-spacing: 2px; }
+
+/* LANG SWITCHER */
+.lang-switcher {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.lang-btn {
+  padding: 7px 16px;
+  border-radius: 50px;
+  border: 1.5px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+}
+.lang-btn:hover, .lang-btn.active { background: var(--gold); color: #0a2e0a; }
+
+/* DATE & COUNTER */
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+.date-show { color: rgba(255,215,0,0.7); font-size: 11px; font-family: Arial, sans-serif; }
+.counter { color: rgba(255,215,0,0.7); font-size: 11px; font-family: Arial, sans-serif; }
+
+/* SCORE BAR */
+.score-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 10px;
+  gap: 8px;
+}
+.score-box {
+  flex: 1;
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 10px;
+  padding: 8px 12px;
+  text-align: center;
+}
+.score-label { color: rgba(255,215,0,0.6); font-size: 9px; font-family: Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; display: block; }
+.score-value { color: var(--gold); font-size: 20px; font-weight: 700; font-family: Arial, sans-serif; display: block; }
+
+/* TIMER */
+.timer-wrap {
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 10px;
+}
+.timer-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  overflow: hidden;
+}
+.timer-bar {
+  height: 100%;
+  background: linear-gradient(to right, #4caf50, #ffd700, #ef5350);
+  border-radius: 50px;
+  transition: width 1s linear;
+  width: 100%;
+}
+.timer-text {
+  text-align: center;
+  color: var(--gold);
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+/* CARD */
+.card {
+  width: 100%;
+  max-width: 580px;
+  background: linear-gradient(160deg, #1b5e20 0%, #0f3d13 40%, #1b5e20 100%);
+  border-radius: 24px;
+  padding: 24px 20px 20px;
+  box-shadow: 0 0 80px rgba(0,180,0,0.15), 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(76,175,80,0.5);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(255,215,0,0.015) 0px, rgba(255,215,0,0.015) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,215,0,0.015) 0px, rgba(255,215,0,0.015) 1px, transparent 1px, transparent 20px);
+  pointer-events: none;
+}
+.card-corner { position: absolute; width: 50px; height: 50px; opacity: 0.3; }
+.card-corner.tr { top: 8px; right: 8px; }
+.card-corner.bl { bottom: 8px; left: 8px; transform: rotate(180deg); }
+.q-number { text-align: center; color: rgba(255,215,0,0.55); font-size: 11px; font-family: Arial, sans-serif; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.question-box {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 16px 18px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.question-text { font-size: 18px; color: #0a2e0a; line-height: 1.9; font-weight: 600; }
+
+/* OPTIONS */
+.options { display: flex; flex-direction: column; gap: 10px; position: relative; }
+.magnifier-bg { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 80px; opacity: 0.07; pointer-events: none; user-select: none; }
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  background: var(--white);
+  border-radius: 50px;
+  padding: 11px 14px 11px 55px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 2px solid transparent;
+}
+.option:hover { transform: translateX(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+.option.correct { background: #e8f5e9; border-color: #4caf50; }
+.option.wrong { background: #ffebee; border-color: #ef5350; }
+.option.disabled { pointer-events: none; }
+.option-text { font-size: 16px; color: #111; font-weight: 600; flex: 1; text-align: right; line-height: 1.6; }
+.option-badge { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; color: white; flex-shrink: 0; }
+.badge-1 { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+.badge-2 { background: linear-gradient(135deg, #e65100, #ff9800); }
+.badge-3 { background: linear-gradient(135deg, #b71c1c, #ef5350); }
+.badge-4 { background: linear-gradient(135deg, #4a148c, #9c27b0); }
+
+/* CARD FOOTER */
+.card-footer { text-align: center; margin-top: 16px; }
+.brand-badge { display: inline-block; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,215,0,0.4); border-radius: 50px; padding: 5px 18px; color: var(--gold); font-size: 10px; letter-spacing: 2px; font-family: Arial, sans-serif; text-transform: uppercase; }
+
+/* NAV */
+.nav-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 16px; width: 100%; max-width: 580px; }
+.nav-btn { flex: 1; max-width: 160px; padding: 12px 16px; border-radius: 50px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif; transition: all 0.3s; }
+.nav-btn.prev { background: rgba(255,215,0,0.1); border: 1.5px solid var(--gold); color: var(--gold); }
+.nav-btn.next { background: linear-gradient(135deg, #ffd700, #ffb300); color: #0a2e0a; box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
+.nav-btn:hover { transform: translateY(-2px); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; transform: none; }
+
+/* PROGRESS */
+.progress-dots { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; max-width: 580px; margin-top: 14px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,215,0,0.2); border: 1px solid rgba(255,215,0,0.3); cursor: pointer; transition: all 0.2s; }
+.dot.active { background: var(--gold); transform: scale(1.4); }
+.dot.correct { background: #4caf50; }
+.dot.wrong { background: #ef5350; }
+
+/* AD MIDDLE */
+.ad-middle { width: 100%; max-width: 580px; margin-top: 14px; }
+
+/* LEADERBOARD BUTTON */
+.lb-btn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 10px 28px;
+  background: rgba(255,215,0,0.1);
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  color: var(--gold);
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 700;
+}
+.lb-btn:hover { background: var(--gold); color: #0a2e0a; }
+
+/* FOOTER */
+.site-footer {
+  width: 100%;
+  max-width: 580px;
+  margin-top: 20px;
+  text-align: center;
+}
+.yt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff0000;
+  color: white;
+  padding: 11px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(255,0,0,0.3);
+  transition: all 0.3s;
+  margin-bottom: 10px;
+}
+.yt-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,0,0,0.4); }
+.footer-copy { color: rgba(255,215,0,0.4); font-size: 10px; font-family: Arial, sans-serif; letter-spacing: 1px; margin-top: 8px; }
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: linear-gradient(160deg, #1b5e20, #0f3d13);
+  border: 2px solid var(--gold);
+  border-radius: 24px;
+  padding: 30px 24px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255,215,0,0.2);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-title { color: var(--gold); font-size: 24px; font-weight: 700; margin-bottom: 20px; font-family: Arial, sans-serif; }
+
+/* LEADERBOARD */
+.lb-table { width: 100%; border-collapse: collapse; }
+.lb-table th { color: var(--gold); font-size: 11px; font-family: Arial, sans-serif; padding: 8px; border-bottom: 1px solid rgba(255,215,0,0.3); text-transform: uppercase; letter-spacing: 1px; }
+.lb-table td { color: white; font-size: 14px; font-family: Arial, sans-serif; padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.lb-table tr:first-child td { color: var(--gold); font-weight: 700; }
+.lb-rank { font-size: 18px; }
+.lb-input-wrap { display: flex; gap: 8px; margin-bottom: 16px; }
+.lb-input { flex: 1; padding: 10px 14px; border-radius: 50px; border: 1.5px solid var(--gold); background: rgba(255,255,255,0.1); color: white; font-size: 14px; font-family: Arial, sans-serif; outline: none; }
+.lb-input::placeholder { color: rgba(255,255,255,0.4); }
+.lb-save-btn { padding: 10px 20px; border-radius: 50px; background: var(--gold); color: #0a2e0a; border: none; font-weight: 700; font-size: 13px; cursor: pointer; font-family: Arial, sans-serif; }
+
+/* CERTIFICATE */
+.cert-wrap {
+  background: linear-gradient(135deg, #0a2e0a, #1b5e20);
+  border: 3px solid var(--gold);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.cert-bismillah { color: var(--gold); font-size: 22px; margin-bottom: 8px; }
+.cert-title { color: var(--gold); font-size: 22px; font-weight: 700; font-family: Arial, sans-serif; letter-spacing: 2px; margin-bottom: 4px; }
+.cert-sub { color: rgba(255,255,255,0.6); font-size: 11px; font-family: Arial, sans-serif; margin-bottom: 16px; }
+.cert-name { color: white; font-size: 26px; font-weight: 700; margin-bottom: 8px; text-shadow: 0 0 20px rgba(255,215,0,0.5); }
+.cert-text { color: rgba(255,255,255,0.8); font-size: 13px; font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 16px; }
+.cert-score { color: var(--gold); font-size: 36px; font-weight: 700; font-family: Arial, sans-serif; margin-bottom: 4px; }
+.cert-score-label { color: rgba(255,215,0,0.6); font-size: 11px; font-family: Arial, sans-serif; letter-spacing: 2px; margin-bottom: 16px; }
+.cert-stars { color: var(--gold); font-size: 20px; letter-spacing: 4px; margin-bottom: 12px; }
+.cert-seal { font-size: 40px; margin-bottom: 8px; }
+.cert-date { color: rgba(255,255,255,0.4); font-size: 10px; font-family: Arial, sans-serif; }
+.cert-footer { color: rgba(255,215,0,0.5); font-size: 10px; font-family: Arial, sans-serif; margin-top: 8px; letter-spacing: 1px; }
+
+/* NAME INPUT MODAL */
+.name-modal { text-align: center; }
+.name-modal-title { color: var(--gold); font-size: 20px; font-weight: 700; font-family: Arial, sans-serif; margin-bottom: 8px; }
+.name-modal-sub { color: rgba(255,255,255,0.6); font-size: 12px; font-family: Arial, sans-serif; margin-bottom: 20px; }
+.name-input { width: 100%; padding: 12px 18px; border-radius: 50px; border: 2px solid var(--gold); background: rgba(255,255,255,0.1); color: white; font-size: 16px; font-family: Arial, sans-serif; outline: none; text-align: center; margin-bottom: 12px; }
+.name-input::placeholder { color: rgba(255,255,255,0.4); }
+.name-start-btn { width: 100%; padding: 13px; border-radius: 50px; background: linear-gradient(135deg, #ffd700, #ffb300); color: #0a2e0a; border: none; font-size: 16px; font-weight: 700; cursor: pointer; font-family: Arial, sans-serif; }
+
+/* RESULT */
+.result-emoji { font-size: 60px; margin-bottom: 12px; }
+.result-title { color: var(--gold); font-size: 22px; font-weight: 700; font-family: Arial, sans-serif; margin-bottom: 8px; }
+.result-score { color: white; font-size: 40px; font-weight: 700; font-family: Arial, sans-serif; margin-bottom: 4px; }
+.result-sub { color: rgba(255,255,255,0.6); font-size: 12px; font-family: Arial, sans-serif; margin-bottom: 20px; }
+.result-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.result-btn { padding: 11px 22px; border-radius: 50px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; font-family: Arial, sans-serif; transition: all 0.3s; }
+.result-btn.primary { background: linear-gradient(135deg, #ffd700, #ffb300); color: #0a2e0a; }
+.result-btn.secondary { background: rgba(255,215,0,0.1); border: 1.5px solid var(--gold); color: var(--gold); }
+
+/* LTR langs */
+body.lang-en, body.lang-hi { direction: ltr; }
+body.lang-en .question-text, body.lang-en .option-text { font-family: Georgia, serif; font-size: 16px; text-align: left; }
+body.lang-en .option { justify-content: flex-start; padding: 11px 55px 11px 14px; }
+body.lang-en .option-text { text-align: left; }
+body.lang-en .magnifier-bg { left: auto; right: 8px; }
+body.lang-en .option-badge { order: -1; }
+body.lang-hi .question-text, body.lang-hi .option-text { font-family: Arial, sans-serif; font-size: 15px; text-align: left; }
+body.lang-hi .option { justify-content: flex-start; padding: 11px 55px 11px 14px; }
+body.lang-hi .option-text { text-align: left; }
+body.lang-hi .magnifier-bg { left: auto; right: 8px; }
+body.lang-hi .option-badge { order: -1; }
+body.lang-ar .question-text, body.lang-ar .option-text { font-family: 'Amiri', serif; font-size: 19px; }
+</style>
+</head>
+<body class="lang-ur">
+
+<!-- NAME MODAL -->
+<div class="modal-overlay show" id="nameModal">
+  <div class="modal">
+    <div class="name-modal">
+      <div style="font-size:50px;margin-bottom:12px;">🕌</div>
+      <div class="name-modal-title">Insha & Amal Islamic Quiz</div>
+      <div style="color:var(--gold);font-size:22px;margin-bottom:6px;">﷽</div>
+      <div class="name-modal-sub">Apna naam likhein aur quiz shuru karein</div>
+      <input type="text" class="name-input" id="playerNameInput" placeholder="Aapka naam yahaan likhein..." maxlength="30">
+      <button class="name-start-btn" onclick="startQuiz()">🚀 Quiz Shuru Karein</button>
+      <div style="color:rgba(255,215,0,0.4);font-size:10px;font-family:Arial;margin-top:12px;letter-spacing:1px;">BY MUHAMMAD AKSEER • INSHA & AMAL ISLAMIC QUIZ</div>
+    </div>
+  </div>
+</div>
+
+<!-- LEADERBOARD MODAL -->
+<div class="modal-overlay" id="lbModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('lbModal')">✕</button>
+    <div class="modal-title">🏆 Leaderboard</div>
+    <div class="lb-input-wrap">
+      <input type="text" class="lb-input" id="lbNameInput" placeholder="Apna naam likhein...">
+      <button class="lb-save-btn" onclick="saveScore()">Save</button>
+    </div>
+    <table class="lb-table">
+      <thead><tr><th>#</th><th>Naam</th><th>Score</th><th>Sahi</th></tr></thead>
+      <tbody id="lbBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CERTIFICATE MODAL -->
+<div class="modal-overlay" id="certModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('certModal')">✕</button>
+    <div class="cert-wrap" id="certContent">
+      <div class="cert-bismillah">﷽</div>
+      <div class="cert-title">CERTIFICATE OF ACHIEVEMENT</div>
+      <div class="cert-sub">INSHA & AMAL ISLAMIC QUIZ</div>
+      <div class="cert-seal">🏅</div>
+      <div class="cert-text">Yeh certificate di jaati hai</div>
+      <div class="cert-name" id="certName">-</div>
+      <div class="cert-text">ko jo Islamic Quiz mein kamyab hue</div>
+      <div class="cert-stars">★ ★ ★ ★ ★</div>
+      <div class="cert-score" id="certScore">0</div>
+      <div class="cert-score-label">TOTAL SCORE</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:12px;font-family:Arial;margin-bottom:8px;" id="certCorrect"></div>
+      <div class="cert-date" id="certDate"></div>
+      <div class="cert-footer">BY MUHAMMAD AKSEER • INSHA & AMAL ISLAMIC QUIZ</div>
+    </div>
+    <div style="color:rgba(255,255,255,0.5);font-size:11px;font-family:Arial;margin-bottom:12px;">Screenshot lein aur share karein! 📸</div>
+    <button class="result-btn primary" onclick="closeModal('certModal')" style="width:100%;padding:13px;">✓ Theek Hai</button>
+  </div>
+</div>
+
+<!-- RESULT MODAL -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal">
+    <div class="result-emoji" id="resultEmoji">🎉</div>
+    <div class="result-title" id="resultTitle">Mubarak Ho!</div>
+    <div class="result-score" id="resultScore">0</div>
+    <div class="result-sub" id="resultSub">Points haasil kiye</div>
+    <div style="margin-bottom:20px;">
+      <div style="color:rgba(255,255,255,0.6);font-size:13px;font-family:Arial;" id="resultDetail"></div>
+    </div>
+    <div class="result-btns">
+      <button class="result-btn primary" onclick="showCert()">📜 Certificate</button>
+      <button class="result-btn secondary" onclick="showLB()">🏆 Leaderboard</button>
+      <button class="result-btn secondary" onclick="restartQuiz()">🔄 Dobara</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="header">
+  <div class="header-bismillah">﷽</div>
+  <div class="stars">★ ★ ★ ★ ★</div>
+  <div class="header-title">🕌 Insha & Amal<br>Islamic Quiz 🕌</div>
+  <div class="header-sub">VIP Islamic Quiz • 50 Questions Daily</div>
+  <div class="header-line"></div>
+  <div class="owner-name">BY MUHAMMAD AKSEER</div>
+</div>
+
+<!-- AD TOP -->
+<div class="ad-space">
+  <!-- AdSense Ad Unit 1 - Replace with your ad code -->
+  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX" data-ad-format="auto"></ins> -->
+  <span class="ad-space-label">ADVERTISEMENT</span>
+</div>
+
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="setLang('ur',this)">اردو</button>
+  <button class="lang-btn" onclick="setLang('ar',this)">عربی</button>
+  <button class="lang-btn" onclick="setLang('en',this)">English</button>
+  <button class="lang-btn" onclick="setLang('hi',this)">हिन्दी</button>
+</div>
+
+<div class="info-bar">
+  <div class="date-show" id="dateShow">📅 Loading...</div>
+  <div class="counter" id="counter">Q 1/50</div>
+</div>
+
+<div class="score-bar">
+  <div class="score-box">
+    <span class="score-label">Score</span>
+    <span class="score-value" id="scoreVal">0</span>
+  </div>
+  <div class="score-box">
+    <span class="score-label">Sahi ✅</span>
+    <span class="score-value" id="correctVal">0</span>
+  </div>
+  <div class="score-box">
+    <span class="score-label">Galat ❌</span>
+    <span class="score-value" id="wrongVal">0</span>
+  </div>
+</div>
+
+<div class="timer-wrap">
+  <div class="timer-bar-bg"><div class="timer-bar" id="timerBar"></div></div>
+  <div class="timer-text" id="timerText">⏱ 30</div>
+</div>
+
+<div class="card" id="quizCard">
+  <div class="card-corner tr">
+    <svg viewBox="0 0 50 50" fill="none"><path d="M25 3L47 25L25 47L3 25Z" stroke="#ffd700" stroke-width="1.5" fill="none"/><path d="M25 12L38 25L25 38L12 25Z" stroke="#ffd700" stroke-width="1" fill="none"/><circle cx="25" cy="25" r="4" fill="#ffd700"/></svg>
+  </div>
+  <div class="card-corner bl">
+    <svg viewBox="0 0 50 50" fill="none"><path d="M25 3L47 25L25 47L3 25Z" stroke="#ffd700" stroke-width="1.5" fill="none"/><path d="M25 12L38 25L25 38L12 25Z" stroke="#ffd700" stroke-width="1" fill="none"/><circle cx="25" cy="25" r="4" fill="#ffd700"/></svg>
+  </div>
+  <div class="q-number" id="qNumber">QUESTION 01 OF 50</div>
+  <div class="question-box">
+    <div class="question-text" id="questionText">...</div>
+  </div>
+  <div class="options" id="optionsContainer">
+    <div class="magnifier-bg">🔍</div>
+    <div class="option" id="opt0" onclick="selectAnswer(0)"><div class="option-text" id="opt0text"></div><div class="option-badge badge-1" id="badge0">ا</div></div>
+    <div class="option" id="opt1" onclick="selectAnswer(1)"><div class="option-text" id="opt1text"></div><div class="option-badge badge-2" id="badge1">ب</div></div>
+    <div class="option" id="opt2" onclick="selectAnswer(2)"><div class="option-text" id="opt2text"></div><div class="option-badge badge-3" id="badge2">ج</div></div>
+    <div class="option" id="opt3" onclick="selectAnswer(3)"><div class="option-text" id="opt3text"></div><div class="option-badge badge-4" id="badge3">د</div></div>
+  </div>
+  <div class="card-footer">
+    <div class="brand-badge">🌙 INSHA & AMAL ISLAMIC QUIZ • BY MUHAMMAD AKSEER 🌙</div>
+  </div>
+</div>
+
+<div class="nav-buttons">
+  <button class="nav-btn prev" id="prevBtn" onclick="changeQ(-1)" disabled>◀ پچھلا</button>
+  <button class="nav-btn next" id="nextBtn" onclick="changeQ(1)">اگلا ▶</button>
+</div>
+
+<!-- AD MIDDLE -->
+<div class="ad-space ad-middle">
+  <!-- AdSense Ad Unit 2 -->
+  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX" data-ad-format="auto"></ins> -->
+  <span class="ad-space-label">ADVERTISEMENT</span>
+</div>
+
+<div class="progress-dots" id="progressDots"></div>
+
+<button class="lb-btn" onclick="openModal('lbModal');renderLB()">🏆 Leaderboard Dekhein</button>
+
+<!-- FOOTER -->
+<div class="site-footer">
+  <!-- AD FOOTER -->
+  <div class="ad-space" style="margin-bottom:14px;">
+    <!-- AdSense Ad Unit 3 -->
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX" data-ad-format="auto"></ins> -->
+    <span class="ad-space-label">ADVERTISEMENT</span>
+  </div>
+  <a href="https://youtube.com/@muhammadsatti-k3p" target="_blank" class="yt-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    YouTube Subscribe Karein
+  </a>
+  <div class="footer-copy">© 2024 Muhammad Akseer • Insha & Amal Islamic Quiz • All Rights Reserved</div>
+</div>
+
+<script>
+// ===================================
+// ALL 30 SETS × 50 QUESTIONS
+// ===================================
+const allSets = [
+// SET 1
+[
+  {ur:{q:"قرآن پاک کو ایک مصحف کی شکل میں جمع کس نے کروایا؟",opts:["حضرت عمر رضی اللہ عنہ","حضرت علی رضی اللہ عنہ","حضرت ابوبکر رضی اللہ عنہ","حضرت عثمان رضی اللہ عنہ"],ans:2},ar:{q:"مَن جَمَعَ القرآنَ في مُصحفٍ واحد؟",opts:["سيدنا عمر","سيدنا علي","سيدنا أبو بكر","سيدنا عثمان"],ans:2},en:{q:"Who compiled the Holy Quran in one Mushaf?",opts:["Hazrat Umar (RA)","Hazrat Ali (RA)","Hazrat Abu Bakr (RA)","Hazrat Uthman (RA)"],ans:2},hi:{q:"पवित्र कुरान को एक किताब में किसने संकलित किया?",opts:["हज़रत उमर","हज़रत अली","हज़रत अबू बक्र","हज़रत उस्मान"],ans:2}},
+  {ur:{q:"اسلام کے پانچ ارکان میں سے پہلا رکن کون سا ہے؟",opts:["نماز","روزہ","کلمہ شہادت","حج"],ans:2},ar:{q:"ما هو الركن الأول من أركان الإسلام؟",opts:["الصلاة","الصيام","شهادة أن لا إله إلا الله","الحج"],ans:2},en:{q:"What is the first pillar of Islam?",opts:["Prayer","Fasting","Declaration of Faith","Pilgrimage"],ans:2},hi:{q:"इस्लाम का पहला स्तंभ कौन सा है?",opts:["नमाज़","रोज़ा","कलमा-ए-शहादत","हज"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کی ولادت کس شہر میں ہوئی؟",opts:["مدینہ","طائف","مکہ مکرمہ","ریاض"],ans:2},ar:{q:"في أي مدينة وُلد النبي محمد ﷺ؟",opts:["المدينة","الطائف","مكة المكرمة","الرياض"],ans:2},en:{q:"In which city was Prophet Muhammad ﷺ born?",opts:["Madinah","Taif","Makkah","Riyadh"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ का जन्म किस शहर में हुआ?",opts:["मदीना","ताइफ़","मक्का","रियाद"],ans:2}},
+  {ur:{q:"قرآن پاک میں کتنے پارے ہیں؟",opts:["28","25","30","32"],ans:2},ar:{q:"كم عدد أجزاء القرآن الكريم؟",opts:["28","25","30","32"],ans:2},en:{q:"How many Juz are in the Holy Quran?",opts:["28","25","30","32"],ans:2},hi:{q:"पवित्र कुरान में कितने पारे हैं?",opts:["28","25","30","32"],ans:2}},
+  {ur:{q:"نماز فجر میں کتنی رکعتیں فرض ہیں؟",opts:["4","3","2","1"],ans:2},ar:{q:"كم عدد ركعات الفجر الفرض؟",opts:["4","3","2","1"],ans:2},en:{q:"How many Fard Rak'ahs in Fajr prayer?",opts:["4","3","2","1"],ans:2},hi:{q:"फज्र की नमाज़ में कितनी फ़र्ज़ रक्अतें हैं?",opts:["4","3","2","1"],ans:2}},
+  {ur:{q:"زکوٰۃ کس پر فرض ہے؟",opts:["ہر مسلمان پر","صرف امیر پر","صاحبِ نصاب مسلمان پر","صرف تاجروں پر"],ans:2},ar:{q:"على من تجب الزكاة؟",opts:["على كل مسلم","على الأغنياء","على من بلغ النصاب","على التجار"],ans:2},en:{q:"On whom is Zakat obligatory?",opts:["Every Muslim","Only rich","Muslim who owns Nisab","Only merchants"],ans:2},hi:{q:"ज़कात किस पर अनिवार्य है?",opts:["हर मुसलमान","केवल अमीर","निसाब मालिक","केवल व्यापारी"],ans:2}},
+  {ur:{q:"حضرت ابراہیم علیہ السلام کو کون سا لقب دیا گیا؟",opts:["روح اللہ","کلیم اللہ","خلیل اللہ","نبی اللہ"],ans:2},ar:{q:"ما لقب إبراهيم عليه السلام؟",opts:["روح الله","كليم الله","خليل الله","نبي الله"],ans:2},en:{q:"What title was given to Prophet Ibrahim (AS)?",opts:["Ruhullah","Kalimullah","Khalilullah","Nabiyullah"],ans:2},hi:{q:"हज़रत इब्राहीम (AS) को कौन सी उपाधि दी गई?",opts:["रूहुल्लाह","कलीमुल्लाह","ख़लीलुल्लाह","नबीयुल्लाह"],ans:2}},
+  {ur:{q:"رمضان المبارک اسلامی کیلنڈر کا کونسا مہینہ ہے؟",opts:["8واں","10واں","9واں","11واں"],ans:2},ar:{q:"ما ترتيب رمضان في التقويم الإسلامي؟",opts:["الثامن","العاشر","التاسع","الحادي عشر"],ans:2},en:{q:"Which month is Ramadan in Islamic calendar?",opts:["8th","10th","9th","11th"],ans:2},hi:{q:"रमज़ान इस्लामी कैलेंडर का कौन सा महीना है?",opts:["8वां","10वां","9वां","11वां"],ans:2}},
+  {ur:{q:"کعبہ شریف کی تعمیر کس نے کی؟",opts:["حضرت آدم علیہ السلام","حضرت نوح علیہ السلام","حضرت ابراہیم و اسماعیل علیہما السلام","حضرت سلیمان علیہ السلام"],ans:2},ar:{q:"من بنى الكعبة المشرفة؟",opts:["سيدنا آدم","سيدنا نوح","سيدنا إبراهيم وإسماعيل","سيدنا سليمان"],ans:2},en:{q:"Who built the Holy Kaaba?",opts:["Prophet Adam (AS)","Prophet Nuh (AS)","Prophet Ibrahim & Ismail (AS)","Prophet Sulaiman (AS)"],ans:2},hi:{q:"काबा शरीफ़ किसने बनाया?",opts:["हज़रत आदम","हज़रत नूह","हज़रत इब्राहीम और इस्माईल","हज़रत सुलेमान"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کو پہلی وحی کہاں نازل ہوئی؟",opts:["مسجد الحرام","غارِ ثور","غارِ حرا","مدینہ منورہ"],ans:2},ar:{q:"أين نزل الوحي على النبي ﷺ أول مرة؟",opts:["المسجد الحرام","غار ثور","غار حراء","المدينة"],ans:2},en:{q:"Where did Prophet Muhammad ﷺ receive first revelation?",opts:["Masjid al-Haram","Cave of Thawr","Cave of Hira","Madinah"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ को पहली वही कहाँ मिली?",opts:["मस्जिद अल-हराम","गार-ए-सौर","गार-ए-हिरा","मदीना"],ans:2}},
+  {ur:{q:"اسلام میں کتنی نمازیں فرض ہیں؟",opts:["3","4","5","6"],ans:2},ar:{q:"كم عدد الصلوات المفروضة؟",opts:["3","4","5","6"],ans:2},en:{q:"How many prayers are obligatory in Islam?",opts:["3","4","5","6"],ans:2},hi:{q:"इस्लाम में कितनी नमाज़ें फ़र्ज़ हैं?",opts:["3","4","5","6"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ نے کس سن میں ہجرت کی؟",opts:["610 عیسوی","615 عیسوی","622 عیسوی","630 عیسوی"],ans:2},ar:{q:"في أي عام هاجر النبي ﷺ؟",opts:["610","615","622","630"],ans:2},en:{q:"In which year did Prophet Muhammad ﷺ migrate?",opts:["610 CE","615 CE","622 CE","630 CE"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ ने किस वर्ष हिजरत की?",opts:["610 ई.","615 ई.","622 ई.","630 ई."],ans:2}},
+  {ur:{q:"قرآن پاک میں کل کتنی سورتیں ہیں؟",opts:["110","112","114","116"],ans:2},ar:{q:"كم عدد سور القرآن؟",opts:["110","112","114","116"],ans:2},en:{q:"How many Surahs are in the Holy Quran?",opts:["110","112","114","116"],ans:2},hi:{q:"पवित्र कुरान में कुल कितनी सूरतें हैं?",opts:["110","112","114","116"],ans:2}},
+  {ur:{q:"سب سے بڑی سورت کونسی ہے؟",opts:["سورہ آل عمران","سورہ النساء","سورہ البقرہ","سورہ یٰسین"],ans:2},ar:{q:"ما أطول سورة في القرآن؟",opts:["آل عمران","النساء","البقرة","يس"],ans:2},en:{q:"Which is the longest Surah in Quran?",opts:["Al-Imran","An-Nisa","Al-Baqarah","Ya-Sin"],ans:2},hi:{q:"कुरान की सबसे लंबी सूरत कौन सी है?",opts:["आल-इमरान","अन-निसा","अल-बक़रह","यासीन"],ans:2}},
+  {ur:{q:"سب سے چھوٹی سورت کونسی ہے؟",opts:["سورہ اخلاص","سورہ فاتحہ","سورہ الکوثر","سورہ الناس"],ans:2},ar:{q:"ما أقصر سورة في القرآن؟",opts:["الإخلاص","الفاتحة","الكوثر","الناس"],ans:2},en:{q:"Which is the shortest Surah in Quran?",opts:["Al-Ikhlas","Al-Fatiha","Al-Kawthar","An-Nas"],ans:2},hi:{q:"कुरान की सबसे छोटी सूरत कौन सी है?",opts:["अल-इख़लास","अल-फ़ातिहा","अल-कौसर","अन-नास"],ans:2}},
+  {ur:{q:"حج کس مہینے میں ادا کیا جاتا ہے؟",opts:["رمضان","شوال","ذوالحجہ","محرم"],ans:2},ar:{q:"في أي شهر يؤدى الحج؟",opts:["رمضان","شوال","ذو الحجة","محرم"],ans:2},en:{q:"In which month is Hajj performed?",opts:["Ramadan","Shawwal","Dhul Hijjah","Muharram"],ans:2},hi:{q:"हज किस महीने में किया जाता है?",opts:["रमज़ान","शव्वाल","ज़िल-हिज्जा","मुहर्रम"],ans:2}},
+  {ur:{q:"جنت کے کتنے دروازے ہیں؟",opts:["4","6","8","10"],ans:2},ar:{q:"كم عدد أبواب الجنة؟",opts:["4","6","8","10"],ans:2},en:{q:"How many gates does Paradise have?",opts:["4","6","8","10"],ans:2},hi:{q:"जन्नत के कितने दरवाज़े हैं?",opts:["4","6","8","10"],ans:2}},
+  {ur:{q:"آیت الکرسی کس سورت میں ہے؟",opts:["سورہ آل عمران","سورہ النساء","سورہ البقرہ","سورہ المائدہ"],ans:2},ar:{q:"في أي سورة آية الكرسي؟",opts:["آل عمران","النساء","البقرة","المائدة"],ans:2},en:{q:"In which Surah is Ayat al-Kursi?",opts:["Al-Imran","An-Nisa","Al-Baqarah","Al-Maidah"],ans:2},hi:{q:"आयत अल-कुर्सी किस सूरत में है?",opts:["आल-इमरान","अन-निसा","अल-बक़रह","अल-माइदा"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کے والد کا نام کیا تھا؟",opts:["ابوطالب","عبدالمطلب","عبداللہ","حارث"],ans:2},ar:{q:"ما اسم والد النبي ﷺ؟",opts:["أبو طالب","عبد المطلب","عبد الله","الحارث"],ans:2},en:{q:"What was Prophet Muhammad's ﷺ father's name?",opts:["Abu Talib","Abdul Muttalib","Abdullah","Harith"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ के पिता का नाम क्या था?",opts:["अबू तालिब","अब्दुल मुत्तलिब","अब्दुल्लाह","हारिस"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کی والدہ کا نام کیا تھا؟",opts:["فاطمہ","خدیجہ","آمنہ","سمیہ"],ans:2},ar:{q:"ما اسم والدة النبي ﷺ؟",opts:["فاطمة","خديجة","آمنة","سمية"],ans:2},en:{q:"What was Prophet Muhammad's ﷺ mother's name?",opts:["Fatima","Khadija","Amina","Sumayya"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ की माँ का नाम क्या था?",opts:["फ़ातिमा","ख़दीजा","आमिना","सुमय्या"],ans:2}},
+  {ur:{q:"اسلام کا سب سے پہلا خلیفہ کون تھا؟",opts:["حضرت عمر","حضرت علی","حضرت ابوبکر صدیق","حضرت عثمان"],ans:2},ar:{q:"من هو أول خليفة في الإسلام؟",opts:["سيدنا عمر","سيدنا علي","سيدنا أبو بكر الصديق","سيدنا عثمان"],ans:2},en:{q:"Who was the first Caliph of Islam?",opts:["Hazrat Umar (RA)","Hazrat Ali (RA)","Hazrat Abu Bakr Siddiq (RA)","Hazrat Uthman (RA)"],ans:2},hi:{q:"इस्लाम का पहला ख़लीफ़ा कौन था?",opts:["हज़रत उमर","हज़रत अली","हज़रत अबू बक्र सिद्दीक़","हज़रत उस्मान"],ans:2}},
+  {ur:{q:"حضرت یوسف علیہ السلام کتنے بھائی تھے؟",opts:["10","11","12","9"],ans:1},ar:{q:"كم كان عدد إخوة يوسف عليه السلام؟",opts:["10","11","12","9"],ans:1},en:{q:"How many brothers did Prophet Yusuf (AS) have?",opts:["10","11","12","9"],ans:1},hi:{q:"हज़रत युसूफ (AS) के कितने भाई थे?",opts:["10","11","12","9"],ans:1}},
+  {ur:{q:"قرآن پاک میں سب سے پہلی نازل ہونے والی آیات کون سی ہیں؟",opts:["سورہ الفاتحہ","سورہ الاخلاص","سورہ العلق کی ابتدائی آیات","سورہ البقرہ"],ans:2},ar:{q:"ما أول الآيات نزولاً؟",opts:["الفاتحة","الإخلاص","أوائل العلق","البقرة"],ans:2},en:{q:"Which were the first verses revealed in Quran?",opts:["Al-Fatiha","Al-Ikhlas","First verses of Al-Alaq","Al-Baqarah"],ans:2},hi:{q:"कुरान में सबसे पहले कौन सी आयतें नाज़िल हुईं?",opts:["अल-फ़ातिहा","अल-इख़लास","अल-अलक़ की प्रारंभिक आयतें","अल-बक़रह"],ans:2}},
+  {ur:{q:"غزوہ بدر کس سن میں ہوئی؟",opts:["1 ہجری","2 ہجری","3 ہجری","4 ہجری"],ans:1},ar:{q:"في أي سنة غزوة بدر؟",opts:["1 هجري","2 هجري","3 هجري","4 هجري"],ans:1},en:{q:"In which year did Battle of Badr take place?",opts:["1 AH","2 AH","3 AH","4 AH"],ans:1},hi:{q:"ग़ज़वा बद्र किस वर्ष हुआ?",opts:["1 हिजरी","2 हिजरी","3 हिजरी","4 हिजरी"],ans:1}},
+  {ur:{q:"نماز عشاء کی فرض رکعات کتنی ہیں؟",opts:["2","3","4","5"],ans:2},ar:{q:"كم ركعة فرض العشاء؟",opts:["2","3","4","5"],ans:2},en:{q:"How many Fard Rak'ahs in Isha prayer?",opts:["2","3","4","5"],ans:2},hi:{q:"ईशा की नमाज़ में कितनी फ़र्ज़ रक्अतें हैं?",opts:["2","3","4","5"],ans:2}},
+  {ur:{q:"حضرت عیسٰی علیہ السلام کو کون سا لقب دیا گیا؟",opts:["خلیل اللہ","کلیم اللہ","روح اللہ","نبی اللہ"],ans:2},ar:{q:"ما لقب عيسى عليه السلام؟",opts:["خليل الله","كليم الله","روح الله","نبي الله"],ans:2},en:{q:"What title is given to Prophet Isa (AS)?",opts:["Khalilullah","Kalimullah","Ruhullah","Nabiyullah"],ans:2},hi:{q:"हज़रत ईसा (AS) को कौन सी उपाधि दी गई?",opts:["ख़लीलुल्लाह","कलीमुल्लाह","रूहुल्लाह","नबीयुल्लाह"],ans:2}},
+  {ur:{q:"حضرت موسٰی علیہ السلام کو کون سی کتاب دی گئی؟",opts:["انجیل","زبور","تورات","قرآن"],ans:2},ar:{q:"ما الكتاب المنزل على موسى عليه السلام؟",opts:["الإنجيل","الزبور","التوراة","القرآن"],ans:2},en:{q:"Which book was revealed to Prophet Musa (AS)?",opts:["Injeel","Zabur","Torah","Quran"],ans:2},hi:{q:"हज़रत मूसा (AS) को कौन सी किताब दी गई?",opts:["इंजील","ज़बूर","तौरात","कुरान"],ans:2}},
+  {ur:{q:"حضرت داؤد علیہ السلام کو کون سی کتاب دی گئی؟",opts:["تورات","انجیل","زبور","قرآن"],ans:2},ar:{q:"ما الكتاب المنزل على داود عليه السلام؟",opts:["التوراة","الإنجيل","الزبور","القرآن"],ans:2},en:{q:"Which book was revealed to Prophet Dawud (AS)?",opts:["Torah","Injeel","Zabur (Psalms)","Quran"],ans:2},hi:{q:"हज़रत दाऊद (AS) को कौन सी किताब दी गई?",opts:["तौरात","इंजील","ज़बूर","कुरान"],ans:2}},
+  {ur:{q:"وحی لانے والے فرشتے کا نام کیا ہے؟",opts:["اسرافیل","میکائیل","جبریل","عزرائیل"],ans:2},ar:{q:"ما اسم ملك الوحي؟",opts:["إسرافيل","ميكائيل","جبريل","عزرائيل"],ans:2},en:{q:"Which angel brought revelation?",opts:["Israfil","Mika'il","Jibril","Azra'il"],ans:2},hi:{q:"वही लाने वाले फ़रिश्ते का नाम क्या है?",opts:["इस्राफ़ील","मीकाईल","जिब्रील","अज़राईल"],ans:2}},
+  {ur:{q:"سورہ الفاتحہ میں کتنی آیات ہیں؟",opts:["5","6","7","8"],ans:2},ar:{q:"كم عدد آيات الفاتحة؟",opts:["5","6","7","8"],ans:2},en:{q:"How many verses are in Surah Al-Fatiha?",opts:["5","6","7","8"],ans:2},hi:{q:"सूरह अल-फ़ातिहा में कितनी आयतें हैं?",opts:["5","6","7","8"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کو کتنی عمر میں نبوت ملی؟",opts:["35 سال","38 سال","40 سال","45 سال"],ans:2},ar:{q:"في أي سن بُعث النبي ﷺ؟",opts:["35","38","40","45"],ans:2},en:{q:"At what age did Prophet Muhammad ﷺ receive prophethood?",opts:["35","38","40","45"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ को किस उम्र में नबुव्वत मिली?",opts:["35 साल","38 साल","40 साल","45 साल"],ans:2}},
+  {ur:{q:"اللہ تعالیٰ کے 99 ناموں کو کیا کہا جاتا ہے؟",opts:["اسماء القرآن","صفاتِ الٰہی","اسماء الحسنیٰ","کلماتِ طیبہ"],ans:2},ar:{q:"ما اسم أسماء الله التسعة والتسعون؟",opts:["أسماء القرآن","الصفات","الأسماء الحسنى","الكلمات"],ans:2},en:{q:"What are the 99 names of Allah called?",opts:["Asma al-Quran","Sifat Ilahi","Asma ul-Husna","Kalimat Tayyiba"],ans:2},hi:{q:"अल्लाह के 99 नामों को क्या कहा जाता है?",opts:["अस्माउल क़ुरआन","सिफ़ात-ए-इलाही","अस्माउल हुस्ना","कलिमात-ए-तय्यिबा"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کا وصال کس سال ہوا؟",opts:["630 عیسوی","631 عیسوی","632 عیسوی","635 عیسوی"],ans:2},ar:{q:"في أي سنة توفي النبي ﷺ؟",opts:["630","631","632","635"],ans:2},en:{q:"In which year did Prophet Muhammad ﷺ pass away?",opts:["630 CE","631 CE","632 CE","635 CE"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ का वफ़ात किस वर्ष हुआ?",opts:["630 ई.","631 ई.","632 ई.","635 ई."],ans:2}},
+  {ur:{q:"قرآن پاک میں کتنی آیات ہیں (تقریباً)؟",opts:["5000","7000","6236","4000"],ans:2},ar:{q:"كم عدد آيات القرآن تقريباً؟",opts:["5000","7000","6236","4000"],ans:2},en:{q:"How many verses (approx) in the Holy Quran?",opts:["5000","7000","6236","4000"],ans:2},hi:{q:"पवित्र कुरान में लगभग कितनी आयतें हैं?",opts:["5000","7000","6236","4000"],ans:2}},
+  {ur:{q:"جمعہ کی نماز کس وقت ادا کی جاتی ہے؟",opts:["فجر کے وقت","ظہر کے وقت","عصر کے وقت","مغرب کے وقت"],ans:1},ar:{q:"متى تصلى الجمعة؟",opts:["الفجر","الظهر","العصر","المغرب"],ans:1},en:{q:"When is Jumu'ah prayer offered?",opts:["Fajr time","Zuhr time","Asr time","Maghrib time"],ans:1},hi:{q:"जुमा की नमाज़ कब अदा की जाती है?",opts:["फज्र","ज़ुहर","असर","मग़रिब"],ans:1}},
+  {ur:{q:"حضرت محمد ﷺ کے دادا کا نام کیا تھا؟",opts:["ابوطالب","عبداللہ","عبدالمطلب","ہاشم"],ans:2},ar:{q:"ما اسم جد النبي ﷺ؟",opts:["أبو طالب","عبد الله","عبد المطلب","هاشم"],ans:2},en:{q:"What was Prophet Muhammad's ﷺ grandfather's name?",opts:["Abu Talib","Abdullah","Abdul Muttalib","Hashim"],ans:2},hi:{q:"पैगंबर मुहम्मद ﷺ के दादा का नाम क्या था?",opts:["अबू तालिब","अब्दुल्लाह","अब्दुल मुत्तलिब","हाशिम"],ans:2}},
+  {ur:{q:"اسلام میں نکاح کے لیے کم از کم کتنے گواہ ضروری ہیں؟",opts:["1","2","3","4"],ans:1},ar:{q:"كم شاهداً يلزم في النكاح؟",opts:["1","2","3","4"],ans:1},en:{q:"How many witnesses are required for Nikah?",opts:["1","2","3","4"],ans:1},hi:{q:"इस्लाम में निकाह के लिए कितने गवाह ज़रूरी हैं?",opts:["1","2","3","4"],ans:1}},
+  {ur:{q:"خانہ کعبہ کو گھیرنے والے کپڑے کو کیا کہتے ہیں؟",opts:["عمامہ","ازار","غلاف (کسوہ)","احرام"],ans:2},ar:{q:"ما اسم كسوة الكعبة؟",opts:["العمامة","الإزار","الكسوة","الإحرام"],ans:2},en:{q:"What is the cloth covering the Kaaba called?",opts:["Imama","Izar","Kiswah","Ihram"],ans:2},hi:{q:"काबा को ढकने वाले कपड़े को क्या कहते हैं?",opts:["इमामा","इज़ार","ग़िलाफ़ (किस्वा)","इहराम"],ans:2}},
+  {ur:{q:"نماز ظہر کی فرض رکعات کتنی ہیں؟",opts:["2","3","4","5"],ans:2},ar:{q:"كم ركعة فرض الظهر؟",opts:["2","3","4","5"],ans:2},en:{q:"How many Fard Rak'ahs in Zuhr prayer?",opts:["2","3","4","5"],ans:2},hi:{q:"ज़ुहर की नमाज़ में कितनी फ़र्ज़ रक्अतें हैं?",opts:["2","3","4","5"],ans:2}},
+  {ur:{q:"نماز عصر کی فرض رکعات کتنی ہیں؟",opts:["2","3","4","5"],ans:2},ar:{q:"كم ركعة فرض العصر؟",opts:["2","3","4","5"],ans:2},en:{q:"How many Fard Rak'ahs in Asr prayer?",opts:["2","3","4","5"],ans:2},hi:{q:"असर की नमाज़ में कितनी फ़र्ज़ रक्अतें हैं?",opts:["2","3","4","5"],ans:2}},
+  {ur:{q:"نماز مغرب کی فرض رکعات کتنی ہیں؟",opts:["2","4","3","5"],ans:2},ar:{q:"كم ركعة فرض المغرب؟",opts:["2","4","3","5"],ans:2},en:{q:"How many Fard Rak'ahs in Maghrib prayer?",opts:["2","4","3","5"],ans:2},hi:{q:"मग़रिब की नमाज़ में कितनी फ़र्ज़ रक्अतें हैं?",opts:["2","4","3","5"],ans:2}},
+  {ur:{q:"مسجد نبوی ﷺ کس شہر میں ہے؟",opts:["مکہ","طائف","مدینہ منورہ","ریاض"],ans:2},ar:{q:"في أي مدينة المسجد النبوي؟",opts:["مكة","الطائف","المدينة المنورة","الرياض"],ans:2},en:{q:"In which city is Masjid al-Nabawi ﷺ?",opts:["Makkah","Taif","Madinah","Riyadh"],ans:2},hi:{q:"मस्जिद नबवी ﷺ किस शहर में है?",opts:["मक्का","ताइफ़","मदीना","रियाद"],ans:2}},
+  {ur:{q:"حضرت محمد ﷺ کا لقب کیا تھا؟",opts:["الامین و الصادق","الشجاع","العالم","الکریم"],ans:0},ar:{q:"ما لقب النبي محمد ﷺ قبل النبوة؟",opts:["الأمين والصادق","الشجاع","العالم","الكريم"],ans:0},en:{q:"What were Prophet Muhammad's ﷺ titles?",opts:["Al-Amin & Al-Sadiq","Al-Shuja","Al-Alim","Al-Karim"],ans:0},hi:{q:"पैगंबर मुहम्मद ﷺ की उपाधि क्या थी?",opts:["अल-अमीन और अल-सादिक़","अल-शुजा","अल-आलिम","अल-करीम"],ans:0}},
+  {ur:{q:"حضرت خدیجہ رضی اللہ عنہا کے ساتھ نکاح کے وقت نبی ﷺ کی عمر کیا تھی؟",opts:["20 سال","22 سال","25 سال","30 سال"],ans:2},ar:{q:"كم كان عمر النبي ﷺ حين تزوج خديجة؟",opts:["20","22","25","30"],ans:2},en:{q:"How old was Prophet ﷺ when he married Khadija (RA)?",opts:["20","22","25","30"],ans:2},hi:{q:"हज़रत ख़दीजा से निकाह के वक़्त नबी ﷺ की उम्र कितनी थी?",opts:["20 साल","22 साल","25 साल","30 साल"],ans:2}},
+  {ur:{q:"سورہ یٰسین کو قرآن کا کیا کہا گیا ہے؟",opts:["باب القرآن","نور القرآن","دل قرآن","اصل القرآن"],ans:2},ar:{q:"بماذا وُصفت سورة يس في الحديث؟",opts:["باب القرآن","نور القرآن","قلب القرآن","أصل القرآن"],ans:2},en:{q:"What is Surah Yasin called in hadith?",opts:["Gate of Quran","Light of Quran","Heart of Quran","Root of Quran"],ans:2},hi:{q:"हदीस में सूरह यासीन को क्या कहा गया है?",opts:["बाब-उल-क़ुरआन","नूर-उल-क़ुरआन","दिल-ए-क़ुरआन","असल-उल-क़ुरआن"],ans:2}},
+  {ur:{q:"لیلۃ القدر کس رات کو تلاش کی جاتی ہے؟",opts:["رمضان کے پہلے عشرے میں","رمضان کے درمیانی عشرے میں","رمضان کے آخری عشرے کی طاق راتوں میں","شعبان کی 15 تاریخ کو"],ans:2},ar:{q:"متى تُلتمس ليلة القدر؟",opts:["العشر الأول","العشر الأوسط","الأوتار من العشر الأخير","شعبان 15"],ans:2},en:{q:"When is Laylat al-Qadr sought?",opts:["First 10 of Ramadan","Middle 10","Odd nights of last 10","15th of Shaban"],ans:2},hi:{q:"लैलतुल-क़द्र कब तलाश की जाती है?",opts:["पहला अशरा","बीच का अशरा","आख़िरी अशरे की ताक़ रातों में","शाबान की 15 तारीख़"],ans:2}},
+  {ur:{q:"اذان میں کتنے جملے ہیں؟",opts:["10","12","15","8"],ans:2},ar:{q:"كم جملة في الأذان؟",opts:["10","12","15","8"],ans:2},en:{q:"How many phrases in Adhan?",opts:["10","12","15","8"],ans:2},hi:{q:"अज़ान में कितने वाक्य हैं?",opts:["10","12","15","8"],ans:2}},
+  {ur:{q:"صدقہ فطر کس موقع پر ادا کیا جاتا ہے؟",opts:["حج کے بعد","رمضان کے شروع میں","عید الفطر سے پہلے","محرم میں"],ans:2},ar:{q:"متى تؤدى زكاة الفطر؟",opts:["بعد الحج","بداية رمضان","قبل صلاة العيد","المحرم"],ans:2},en:{q:"When is Zakat al-Fitr paid?",opts:["After Hajj","Start of Ramadan","Before Eid prayer","In Muharram"],ans:2},hi:{q:"सदक़ह-ए-फ़ित्र कब दिया जाता है?",opts:["हज के बाद","रमज़ान की शुरुआत","ईद की नमाज़ से पहले","मुहर्रम में"],ans:2}},
+  {ur:{q:"اسلام میں کتنی آسمانی کتابیں ہیں؟",opts:["2","3","4","5"],ans:2},ar:{q:"كم عدد الكتب السماوية؟",opts:["2","3","4","5"],ans:2},en:{q:"How many Holy Books are in Islam?",opts:["2","3","4","5"],ans:2},hi:{q:"इस्लाम में कितनी आसमानी किताबें हैं?",opts:["2","3","4","5"],ans:2}},
+],
+// SETS 2-30 will rotate with shuffled versions
+];
+
+// Generate sets 2-30 by rotating/shuffling set 1 with different answer positions
+function generateSets() {
+  const base = allSets[0];
+  const result = [base];
+  for (let s = 1; s < 30; s++) {
+    const newSet = base.map((q,i) => {
+      // Rotate options for variety
+      const rotate = (s + i) % 4;
+      const rotateOpts = (opts, ans, r) => {
+        const newOpts = [...opts];
+        const newAns = (ans + r) % 4;
+        // Swap current answer to rotated position
+        const temp = newOpts[ans];
+        newOpts[ans] = newOpts[newAns];
+        newOpts[newAns] = temp;
+        return { opts: newOpts, ans: newAns };
+      };
+      const urR = rotateOpts([...q.ur.opts], q.ur.ans, rotate);
+      const arR = rotateOpts([...q.ar.opts], q.ar.ans, rotate);
+      const enR = rotateOpts([...q.en.opts], q.en.ans, rotate);
+      const hiR = rotateOpts([...q.hi.opts], q.hi.ans, rotate);
+      return {
+        ur: { q: q.ur.q, opts: urR.opts, ans: urR.ans },
+        ar: { q: q.ar.q, opts: arR.opts, ans: arR.ans },
+        en: { q: q.en.q, opts: enR.opts, ans: enR.ans },
+        hi: { q: q.hi.q, opts: hiR.opts, ans: hiR.ans }
+      };
+    });
+    result.push(newSet);
+  }
+  return result;
+}
+
+const sets = generateSets();
+
+// ===================================
+// STATE
+// ===================================
+let currentLang = 'ur';
+let currentQ = 0;
+let score = 0;
+let correct = 0;
+let wrong = 0;
+let answered = [];
+let playerName = '';
+let timerInterval = null;
+let timeLeft = 30;
+const TIMER_MAX = 30;
+const POINTS_PER_Q = 10;
+
+const badges = { ur:['ا','ب','ج','د'], ar:['أ','ب','ج','د'], en:['A','B','C','D'], hi:['अ','ब','स','द'] };
+
+function getTodaySet() {
+  const start = new Date(2024, 0, 1);
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const diff = Math.floor((today - start) / 86400000);
+  return sets[diff % 30];
+}
+
+const todaySet = getTodaySet();
+
+function getDateStr() {
+  const d = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+// ===================================
+// TIMER
+// ===================================
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = TIMER_MAX;
+  updateTimerUI();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerUI();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      // Auto wrong
+      if (!answered[currentQ]) {
+        answered[currentQ] = -1;
+        wrong++;
+        document.getElementById('wrongVal').textContent = wrong;
+        updateDot(currentQ, false);
+        // Show correct
+        const q = todaySet[currentQ];
+        const data = q[currentLang];
+        document.getElementById(`opt${data.ans}`).classList.add('correct');
+        disableOptions();
+        setTimeout(() => { if(currentQ < todaySet.length-1) changeQ(1); else showResult(); }, 1200);
+      }
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  const pct = (timeLeft / TIMER_MAX) * 100;
+  document.getElementById('timerBar').style.width = pct + '%';
+  document.getElementById('timerText').textContent = '⏱ ' + timeLeft;
+  const t = document.getElementById('timerText');
+  if (timeLeft <= 10) t.style.color = '#ef5350';
+  else if (timeLeft <= 20) t.style.color = '#ff9800';
+  else t.style.color = 'var(--gold)';
+}
+
+// ===================================
+// QUIZ LOGIC
+// ===================================
+function startQuiz() {
+  const name = document.getElementById('playerNameInput').value.trim();
+  if (!name) { alert('Apna naam likhein!'); return; }
+  playerName = name;
+  closeModal('nameModal');
+  renderQuestion();
+  startTimer();
+}
+
+function renderQuestion() {
+  const q = todaySet[currentQ];
+  const data = q[currentLang];
+  document.getElementById('questionText').textContent = data.q;
+  document.getElementById('counter').textContent = `Q ${currentQ+1}/50`;
+  document.getElementById('qNumber').textContent = `QUESTION ${String(currentQ+1).padStart(2,'0')} OF 50`;
+  document.getElementById('dateShow').textContent = '📅 ' + getDateStr();
+
+  const bs = badges[currentLang];
+  data.opts.forEach((opt,i) => {
+    document.getElementById(`opt${i}text`).textContent = opt;
+    document.getElementById(`badge${i}`).textContent = bs[i];
+    const el = document.getElementById(`opt${i}`);
+    el.className = 'option';
+    if (answered[currentQ] !== undefined) {
+      el.classList.add('disabled');
+      if (i === data.ans) el.classList.add('correct');
+      else if (i === answered[currentQ]) el.classList.add('wrong');
+    }
+  });
+
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  document.getElementById('nextBtn').disabled = currentQ === todaySet.length-1;
+  document.getElementById('nextBtn').textContent = currentQ === todaySet.length-1 ? '🏁 Finish' : 'اگلا ▶';
+
+  document.querySelectorAll('.dot').forEach((d,i) => {
+    d.className = 'dot' + (i===currentQ?' active':'') + (answered[i]===todaySet[i][currentLang].ans?' correct':answered[i]!==undefined&&answered[i]!==-1?' wrong':answered[i]===-1?' wrong':'');
+  });
+
+  const card = document.getElementById('quizCard');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = 'fadeIn 0.4s ease';
+
+  if (answered[currentQ] === undefined) startTimer();
+  else clearInterval(timerInterval);
+}
+
+function selectAnswer(idx) {
+  if (answered[currentQ] !== undefined) return;
+  clearInterval(timerInterval);
+  const q = todaySet[currentQ];
+  const data = q[currentLang];
+  answered[currentQ] = idx;
+
+  if (idx === data.ans) {
+    score += POINTS_PER_Q;
+    correct++;
+    document.getElementById(`opt${idx}`).classList.add('correct');
+    document.getElementById('scoreVal').textContent = score;
+    document.getElementById('correctVal').textContent = correct;
+    updateDot(currentQ, true);
+  } else {
+    wrong++;
+    document.getElementById(`opt${idx}`).classList.add('wrong');
+    document.getElementById(`opt${data.ans}`).classList.add('correct');
+    document.getElementById('wrongVal').textContent = wrong;
+    updateDot(currentQ, false);
+  }
+  disableOptions();
+  setTimeout(() => {
+    if (currentQ < todaySet.length-1) changeQ(1);
+    else showResult();
+  }, 1200);
+}
+
+function disableOptions() {
+  for(let i=0;i<4;i++) document.getElementById(`opt${i}`).classList.add('disabled');
+}
+
+function updateDot(idx, isCorrect) {
+  const dots = document.querySelectorAll('.dot');
+  if (dots[idx]) {
+    dots[idx].classList.remove('active');
+    dots[idx].classList.add(isCorrect ? 'correct' : 'wrong');
+  }
+}
+
+function changeQ(dir) {
+  const next = currentQ + dir;
+  if (next >= 0 && next < todaySet.length) {
+    currentQ = next;
+    renderQuestion();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.body.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.documentElement.dir = (lang==='en'||lang==='hi') ? 'ltr' : 'rtl';
+  if(playerName) renderQuestion();
+}
+
+// ===================================
+// RESULT
+// ===================================
+function showResult() {
+  clearInterval(timerInterval);
+  const total = todaySet.length * POINTS_PER_Q;
+  const pct = Math.round((score/total)*100);
+  let emoji = '🎉', title = 'Mubarak Ho!';
+  if (pct < 40) { emoji = '😔'; title = 'Mehnat Karein!'; }
+  else if (pct < 70) { emoji = '👍'; title = 'Acha Kiya!'; }
+  else if (pct >= 90) { emoji = '🏆'; title = 'Shaandaar!'; }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultScore').textContent = score + ' Points';
+  document.getElementById('resultSub').textContent = `${correct} sahi, ${wrong} galat — ${pct}% score`;
+  document.getElementById('resultDetail').textContent = playerName + ' — Jazak Allah Khair!';
+  openModal('resultModal');
+}
+
+function showCert() {
+  closeModal('resultModal');
+  document.getElementById('certName').textContent = playerName;
+  document.getElementById('certScore').textContent = score + ' Points';
+  document.getElementById('certCorrect').textContent = correct + ' / 50 Sahi Jawabaat';
+  document.getElementById('certDate').textContent = getDateStr();
+  openModal('certModal');
+}
+
+function showLB() {
+  closeModal('resultModal');
+  document.getElementById('lbNameInput').value = playerName;
+  openModal('lbModal');
+  renderLB();
+}
+
+function restartQuiz() {
+  closeModal('resultModal');
+  currentQ = 0; score = 0; correct = 0; wrong = 0; answered = [];
+  document.getElementById('scoreVal').textContent = '0';
+  document.getElementById('correctVal').textContent = '0';
+  document.getElementById('wrongVal').textContent = '0';
+  document.querySelectorAll('.dot').forEach(d => { d.className = 'dot'; });
+  renderQuestion();
+  startTimer();
+}
+
+// ===================================
+// LEADERBOARD
+// ===================================
+function saveScore() {
+  const name = document.getElementById('lbNameInput').value.trim() || playerName;
+  if (!name) return;
+  let lb = JSON.parse(localStorage.getItem('islamicQuizLB') || '[]');
+  lb.push({ name, score, correct, date: getDateStr() });
+  lb.sort((a,b) => b.score - a.score);
+  lb = lb.slice(0, 20);
+  localStorage.setItem('islamicQuizLB', JSON.stringify(lb));
+  renderLB();
+}
+
+function renderLB() {
+  const lb = JSON.parse(localStorage.getItem('islamicQuizLB') || '[]');
+  const medals = ['🥇','🥈','🥉'];
+  const tbody = document.getElementById('lbBody');
+  if (lb.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="color:rgba(255,255,255,0.4);font-size:12px;text-align:center;padding:20px;">Abhi koi score nahi</td></tr>';
+    return;
+  }
+  tbody.innerHTML = lb.map((e,i) => `
+    <tr>
+      <td class="lb-rank">${medals[i]||'#'+(i+1)}</td>
+      <td>${e.name}</td>
+      <td style="color:var(--gold);font-weight:700;">${e.score}</td>
+      <td>${e.correct}/50</td>
+    </tr>
+  `).join('');
+}
+
+// ===================================
+// MODAL
+// ===================================
+function openModal(id) { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+// ===================================
+// INIT PROGRESS DOTS
+// ===================================
+const dotsContainer = document.getElementById('progressDots');
+for (let i = 0; i < todaySet.length; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i===0?' active':'');
+  dot.onclick = () => { if(playerName){currentQ=i;renderQuestion();} };
+  dotsContainer.appendChild(dot);
+}
+
+document.getElementById('dateShow').textContent = '📅 ' + getDateStr();
+</script>
+</body>
+</html>
